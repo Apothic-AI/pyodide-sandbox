@@ -1,3 +1,7 @@
+> [!WARNING]
+> This package is no longer maintained. These days we recommend accessing code execution either through sandbox APIs or LLM provider APIs.
+>
+> We do not recommend using `langchain-sandbox` for any production use cases. You are welcome to fork the code for your own use cases!
 # 🛡️ LangChain Sandbox
 
 > A secure environment for running Python code using Pyodide (WebAssembly) and Deno
@@ -15,6 +19,13 @@ LangChain Sandbox provides a secure environment for executing untrusted Python c
 - **🔒 Security** - Isolated execution environment with configurable permissions
 - **💻 Local Execution** - No remote execution or Docker containers needed
 - **🔄 Session Support** - Maintain state across multiple code executions
+
+## 🛡️ Security Considerations
+
+> [!warning]
+> While LangChain Sandbox uses Pyodide and Deno to isolate code execution, the actual security guarantees depend on how you configure the sandbox and Deno permissions. **If you grant broad permissions (such as host file system or unrestricted network access) via arguments passed to `PyodideSandbox`, sandboxed or untrusted code may access your host resources.**
+>
+> See the [Deno Security Model documentation](https://docs.deno.com/runtime/manual/basics/security) for details on configuring permissions securely. **Carefully review and restrict permissions when running untrusted code.**
 
 ## Limitations
 
