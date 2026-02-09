@@ -1,8 +1,4 @@
-> [!WARNING]
-> This package is no longer maintained. These days we recommend accessing code execution either through sandbox APIs or LLM provider APIs.
->
-> We do not recommend using `langchain-sandbox` for any production use cases. You are welcome to fork the code for your own use cases!
-# 🛡️ LangChain Sandbox
+# 🛡️ pyodide-sandbox
 
 > A secure environment for running Python code using Pyodide (WebAssembly) and Deno
 
@@ -12,7 +8,7 @@
 
 ## 📋 Overview
 
-LangChain Sandbox provides a secure environment for executing untrusted Python code. It leverages Pyodide (Python compiled to WebAssembly) to run Python code in a sandboxed environment.
+Pyodide Sandbox provides a secure environment for executing untrusted Python code. It leverages Pyodide (Python compiled to WebAssembly) to run Python code in a sandboxed environment.
 
 ## ✨ Key Features
 
@@ -37,10 +33,10 @@ LangChain Sandbox provides a secure environment for executing untrusted Python c
 
 1. Install Deno (required): https://docs.deno.com/runtime/getting_started/installation/
 
-2. Install `langchain-sandbox`:
+2. Install `pyodide-sandbox`:
     
     ```bash
-    pip install langchain-sandbox
+    pip install pyodide-sandbox
     ```
 
 ## 💡 Example Usage
@@ -51,7 +47,7 @@ LangChain Sandbox provides a secure environment for executing untrusted Python c
 > https://docs.deno.com/runtime/fundamentals/security/#network-access
 
 ```python
-from langchain_sandbox import PyodideSandbox
+from pyodide_sandbox import PyodideSandbox
 
 # Create a sandbox instance
 sandbox = PyodideSandbox(
@@ -124,7 +120,7 @@ print(await sandbox.execute("float(x[0])", session_bytes=result.session_bytes, s
 You can use `PyodideSandbox` as a LangChain tool:
 
 ```python
-from langchain_sandbox import PyodideSandboxTool
+from pyodide_sandbox import PyodideSandboxTool
 
 tool = PyodideSandboxTool()
 result = await tool.ainvoke("print('Hello, world!')")
@@ -136,7 +132,7 @@ You can use sandbox tools inside a LangGraph agent:
 
 ```python
 from langgraph.prebuilt import create_react_agent
-from langchain_sandbox import PyodideSandboxTool
+from pyodide_sandbox import PyodideSandboxTool
 
 tool = PyodideSandboxTool(
     # Allow Pyodide to install python packages that
@@ -164,7 +160,7 @@ and definitions, etc.), you need to set `stateful=True`:
 from langgraph.prebuilt import create_react_agent
 from langgraph.prebuilt.chat_agent_executor import AgentState
 from langgraph.checkpoint.memory import InMemorySaver
-from langchain_sandbox import PyodideSandboxTool, PyodideSandbox
+from pyodide_sandbox import PyodideSandboxTool, PyodideSandbox
 
 class State(AgentState):
     # important: add session_bytes & session_metadata keys to your graph state schema - 
